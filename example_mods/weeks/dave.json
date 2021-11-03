@@ -1,0 +1,48 @@
+{
+	"storyName": "Dave's Fun Rapping Battle!",
+	"hideFreeplay": false,
+	"weekBackground": "Dave",
+	"weekBefore": "tutorial",
+	"freeplayColor": [
+		146,
+		113,
+		253
+	],
+	"startUnlocked": true,
+	"songs": [
+		[
+			"House",
+			"dave",
+			[
+				0,
+				91,
+				255
+			]
+		],
+		[
+			"Insanity",
+			"dave",
+			[
+				0,
+				91,
+				255
+			]
+		],
+		[
+			"Polygonized",
+			"dave-3d",
+			[
+				126,
+				60,
+				95
+			]
+		]
+	],
+	"hideStoryMode": false,
+	"weekCharacters": [
+		"dave",
+		"",
+		""
+	],
+	"weekName": "Vs. Dave"
+}

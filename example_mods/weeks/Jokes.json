@@ -1,0 +1,57 @@
+{
+	"storyName": "Unfunniest thing in the world, do not necropost like '69th post'",
+	"hideFreeplay": false,
+	"weekBackground": "dave",
+	"freeplayColor": [
+		146,
+		113,
+		253
+	],
+	"weekBefore": "tutorial",
+	"startUnlocked": true,
+	"hideStoryMode": true,
+	"weekCharacters": [
+		"",
+		"",
+		""
+	],
+	"songs": [
+		[
+			"Supernovae",
+			"marcello",
+			[
+				0,
+				73,
+				0
+			]
+		],
+		[
+			"Glitch",
+			"marcello",
+			[
+				0,
+				73,
+				0
+			]
+		],
+		[
+			"Cheating",
+			"bambi-3d",
+			[
+				0,
+				73,
+				0
+			]
+		],
+		[
+			"Cheating 2",
+			"dad",
+			[
+				146,
+				113,
+				253
+			]
+		]
+	],
+	"weekName": "Joke Tracks"
+}

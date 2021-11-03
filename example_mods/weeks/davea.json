@@ -1,0 +1,30 @@
+{
+	"songs": [
+		[
+			"Bonus Song",
+			"dave",
+			[
+				0,
+				73,
+				255
+			]
+		]
+	],
+	"hideFreeplay": false,
+	"weekBackground": "dave",
+	"weekCharacters": [
+		"",
+		"",
+		""
+	],
+	"storyName": "psych why story mode for freeplay dsjkfhjkfahfsghafjsjhdsafsdhffh",
+	"weekName": "ok",
+	"freeplayColor": [
+		146,
+		113,
+		253
+	],
+	"hideStoryMode": true,
+	"weekBefore": "tutorial",
+	"startUnlocked": true
+}

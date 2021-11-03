@@ -1,0 +1,11 @@
+{
+	
+	"image": "Menu_Blank",
+	"position": [
+		0,
+		0
+	],
+	"scale": 1,
+	"idle_anim": "blank idle",
+	"confirm_anim": "blank idle"
+}

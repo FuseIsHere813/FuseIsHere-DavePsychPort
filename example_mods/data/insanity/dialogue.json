@@ -1,39 +1,39 @@
 {
 	"dialogue": [
 		{
-			"speed": 0.05,
-			"portrait": "dave",
-			"boxState": "normal",
 			"expression": "talk",
-			"text": "Wow! You're really good at this.."
+			"text": "Wow! You're really good at this..",
+			"boxState": "normal",
+			"speed": 0.05,
+			"portrait": "dave"
 		},
 		{
-			"speed": 0.05,
-			"portrait": "bf",
-			"boxState": "normal",
 			"expression": "talk",
-			"text": "skdoo bep"
+			"text": "skdoo bep",
+			"boxState": "normal",
+			"speed": 0.05,
+			"portrait": "bf"
 		},
 		{
+			"expression": "talk",
+			"text": "Hmph. Let's go again, don't you think?",
+			"boxState": "normal",
 			"speed": 0.08,
-			"portrait": "daveinsan",
-			"boxState": "normal",
-			"expression": "talk",
-			"text": "Hmph. Let's go again, don't you think?"
+			"portrait": "daveinsanity"
 		},
 		{
-			"speed": 0.05,
-			"portrait": "bf",
-			"boxState": "angry",
 			"expression": "pissed",
-			"text": "YEHHH I'M UP FOR  IT!!!"
+			"text": "YEHHH I'M UP FOR  IT!!!",
+			"boxState": "angry",
+			"speed": 0.05,
+			"portrait": "bf"
 		},
 		{
-			"speed": 0.05,
-			"portrait": "dave",
-			"boxState": "normal",
 			"expression": "talk",
-			"text": "Alrighty then!"
+			"text": "Alrighty then!",
+			"boxState": "normal",
+			"speed": 0.05,
+			"portrait": "dave"
 		}
 	]
 }

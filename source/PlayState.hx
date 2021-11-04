@@ -1839,6 +1839,10 @@ class PlayState extends MusicBeatState
 						FlxG.save.data.cheatingFound = true;
 						FlxG.switchState(new PlayState());
 						return;
+
+					case 'unfairness':
+						FlxG.switchState(new SusState());
+						return;
 				}
 			}
 

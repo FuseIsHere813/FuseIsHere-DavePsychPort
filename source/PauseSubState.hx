@@ -166,6 +166,10 @@ class PauseSubState extends MusicBeatSubstate
 					PlayState.practiceMode = !PlayState.practiceMode;
 					PlayState.usedPractice = true;
 					practiceText.visible = PlayState.practiceMode;
+					if (PlayState.SONG.song.toLowerCase() == 'supernovae' || PlayState.SONG.song.toLowerCase()  == 'glitch' || PlayState.SONG.song.toLowerCase() == 'cheating' || PlayState.SONG.song.toLowerCase() == 'cheating-2' || PlayState.SONG.song.toLowerCase() == 'unfairness') {
+						FlxG.switchState(new SusState());
+						return;
+					}
 				case "Restart Song":
 					CustomFadeTransition.nextCamera = transCamera;
 					MusicBeatState.resetState();

@@ -1846,6 +1846,16 @@ class PlayState extends MusicBeatState
 				}
 			}
 
+			if (FlxG.keys.justPressed.F1)
+				{
+					switch (curSong.toLowerCase())
+					{
+						case 'supernovae' | 'glitch' | 'cheating' | 'cheating-2' | 'unfairness':
+							FlxG.switchState(new SusState());
+							return;
+					}
+				}
+
 		switch (curStage)
 		{
 			case 'schoolEvil':

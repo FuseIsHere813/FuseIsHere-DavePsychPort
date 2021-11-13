@@ -1,0 +1,9 @@
+name: Feature Request
+description: No, I won't add 2.5 Dave Sprites, stop asking.
+labels: [enhancement]
+body:
+  - type: textarea
+    attributes:
+    label: What feature do you want to added on the port?
+  validations:
+    required: true

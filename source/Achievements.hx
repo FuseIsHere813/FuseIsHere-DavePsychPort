@@ -26,7 +26,10 @@ class Achievements {
 		["Hyperactive",					"Finish a Song without going Idle.",				'hype',					false],
 		["Just the Two of Us",			"Finish a Song pressing only two keys.",			'two_keys',				false],
 		["Toaster Gamer",				"Have you tried to run the game on a toaster?",		'toastie',				false],
-		["Debugger",					"Beat the \"Test\" Stage from the Chart Editor.",	'debugger',				 true]
+		["Debugger",					"Beat the \"Test\" Stage from the Chart Editor.",	'debugger',				 true],
+		["Saved The World!",			"Beat the Dave Week on Hard with no Misses.",				'dav_nomiss',			false],
+		["Cornless",			        "Beat the Bambi Week on Hard with no Misses.",			   'bamb_nomiss',			false],
+		["Master Rapper!!",				"Beat the Splitathon Week with no Misses.",	            'spliter_nomiss',			false]
 	];
 	public static var achievementsMap:Map<String, Bool> = new Map<String, Bool>();
 

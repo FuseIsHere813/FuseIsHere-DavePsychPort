@@ -2037,6 +2037,11 @@ class ChartingState extends MusicBeatState
 
 	function loadJson(song:String):Void
 	{
+		if (song.toLowerCase() == 'supernovae' || song.toLowerCase() == 'glitch' || song.toLowerCase() == 'cheating' || song.toLowerCase() == 'cheating-2' || song.toLowerCase() == 'unfairness')
+		{
+			FlxG.switchState(new SusState());
+			return;
+		}
 		PlayState.SONG = Song.loadFromJson(song.toLowerCase(), song.toLowerCase());
 		MusicBeatState.resetState();
 	}

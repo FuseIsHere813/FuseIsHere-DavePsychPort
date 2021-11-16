@@ -247,6 +247,9 @@ class PlayState extends MusicBeatState
 	private var luaDebugGroup:FlxTypedGroup<DebugLuaText>;
 	public var introSoundsSuffix:String = '';
 
+	// le spliter thoner :trol:
+	var nightColor:FlxColor = 0xFF878787;
+
 	override public function create()
 	{
 		#if MODS_ALLOWED
@@ -625,6 +628,98 @@ class PlayState extends MusicBeatState
 					bg.antialiasing = false;
 					add(bg);
 				}
+
+				case 'dave-night':
+				defaultCamZoom = 0.9;
+				var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('dave/skynight'));
+				bg.antialiasing = true;
+				bg.scrollFactor.set(0.75, 0.75);
+				bg.active = false;
+
+				add(bg);
+	
+				var stageHills:FlxSprite = new FlxSprite(-225, -125).loadGraphic(Paths.image('dave/hillsnight'));
+				stageHills.setGraphicSize(Std.int(stageHills.width * 1.25));
+				stageHills.updateHitbox();
+				stageHills.antialiasing = true;
+				stageHills.scrollFactor.set(0.8, 0.8);
+				stageHills.active = false;
+				
+				add(stageHills);
+	
+				var gate:FlxSprite = new FlxSprite(-200, -125).loadGraphic(Paths.image('dave/gatenight'));
+				gate.setGraphicSize(Std.int(gate.width * 1.2));
+				gate.updateHitbox();
+				gate.antialiasing = true;
+				gate.scrollFactor.set(0.9, 0.9);
+				gate.active = false;
+
+				add(gate);
+	
+				var stageFront:FlxSprite = new FlxSprite(-225, -125).loadGraphic(Paths.image('dave/grassnight'));
+				stageFront.setGraphicSize(Std.int(stageFront.width * 1.2));
+				stageFront.updateHitbox();
+				stageFront.antialiasing = true;
+				stageFront.active = false;
+				
+				add(stageFront);
+
+				case 'bamber-night':
+					var bg:FlxSprite = new FlxSprite(-700, 0).loadGraphic(Paths.image('dave/skynight'));
+					bg.antialiasing = true;
+					bg.scrollFactor.set(0.9, 0.9);
+					bg.active = false;
+		
+					var hills:FlxSprite = new FlxSprite(-250, 200).loadGraphic(Paths.image('bambi/orangey hills'));
+					hills.antialiasing = true;
+					hills.scrollFactor.set(0.9, 0.7);
+					hills.active = false;
+		
+					var farm:FlxSprite = new FlxSprite(150, 250).loadGraphic(Paths.image('bambi/funfarmhouse'));
+					farm.antialiasing = true;
+					farm.scrollFactor.set(1.1, 0.9);
+					farm.active = false;
+					
+					var foreground:FlxSprite = new FlxSprite(-400, 600).loadGraphic(Paths.image('bambi/grass lands'));
+					foreground.antialiasing = true;
+					foreground.active = false;
+					
+					var cornSet:FlxSprite = new FlxSprite(-350, 325).loadGraphic(Paths.image('bambi/Cornys'));
+					cornSet.antialiasing = true;
+					cornSet.active = false;
+					
+					var cornSet2:FlxSprite = new FlxSprite(1050, 325).loadGraphic(Paths.image('bambi/Cornys'));
+					cornSet2.antialiasing = true;
+					cornSet2.active = false;
+					
+					var fence:FlxSprite = new FlxSprite(-350, 450).loadGraphic(Paths.image('bambi/crazy fences'));
+					fence.antialiasing = true;
+					fence.active = false;
+		
+					var sign:FlxSprite = new FlxSprite(0, 500).loadGraphic(Paths.image('bambi/Sign'));
+					sign.antialiasing = true;
+					sign.active = false;
+
+					if (curStage == 'bamber-night')
+						{
+							hills.color = nightColor;
+							farm.color = nightColor;
+							foreground.color = nightColor;
+							cornSet.color = nightColor;
+							cornSet2.color = nightColor;
+							fence.color = nightColor;
+							sign.color = nightColor;
+						}
+
+						add(bg);
+						add(hills);
+						add(farm);
+						add(foreground);
+						add(cornSet);
+						add(cornSet2);
+						add(fence);
+						add(sign);
+
 		}
 
 		if(isPixelStage) {
@@ -722,7 +817,7 @@ class PlayState extends MusicBeatState
 		startCharacterPos(dad, true);
 		dadGroup.add(dad);
 
-		boyfriend = new Boyfriend(0, 0, SONG.player1);
+		boyfriend = new Boyfriend(0, 0, CharacterSelectState.character);
 		startCharacterPos(boyfriend);
 		boyfriendGroup.add(boyfriend);
 		
@@ -2905,7 +3000,7 @@ class PlayState extends MusicBeatState
 		} else {
 			var achieve:String = checkForAchievement(['week1_nomiss', 'week2_nomiss', 'week3_nomiss', 'week4_nomiss',
 				'week5_nomiss', 'week6_nomiss', 'week7_nomiss', 'ur_bad',
-				'ur_good', 'hype', 'two_keys', 'toastie', 'debugger']);
+				'ur_good', 'hype', 'two_keys', 'toastie', 'debugger', 'dav_nomiss', 'bamb_nomiss', 'spliter_nomiss']);
 
 			if(achieve != null) {
 				startAchievement(achieve);
@@ -3974,7 +4069,7 @@ class PlayState extends MusicBeatState
 				var unlock:Bool = false;
 				switch(achievementName)
 				{
-					case 'week1_nomiss' | 'week2_nomiss' | 'week3_nomiss' | 'week4_nomiss' | 'week5_nomiss' | 'week6_nomiss' | 'week7_nomiss':
+					case 'week1_nomiss' | 'week2_nomiss' | 'week3_nomiss' | 'week4_nomiss' | 'week5_nomiss' | 'week6_nomiss' | 'week7_nomiss' | 'dav_nomiss' | 'bamb_nomiss' | 'spliter_nomiss':
 						if(isStoryMode && campaignMisses + songMisses < 1 && CoolUtil.difficultyString() == 'HARD' && storyPlaylist.length <= 1 && !changedDifficulty && !usedPractice)
 						{
 							var weekName:String = WeekData.getWeekFileName();
@@ -3994,6 +4089,12 @@ class PlayState extends MusicBeatState
 									if(achievementName == 'week6_nomiss') unlock = true;
 								case 'week7':
 									if(achievementName == 'week7_nomiss') unlock = true;
+								case 'dave':
+									if(achievementName == 'dav_nomiss') unlock = true;
+								case 'davebutbamb':
+									if(achievementName == 'bamb_nomiss') unlock = true;
+								case 'FINALE...':
+									if(achievementName == 'spliter_nomiss') unlock = true;
 							}
 						}
 					case 'ur_bad':

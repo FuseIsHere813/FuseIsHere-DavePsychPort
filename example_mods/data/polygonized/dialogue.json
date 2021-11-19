@@ -1,0 +1,53 @@
+{
+	"dialogue": [
+		{
+			"speed": 0.05,
+			"portrait": "dave3d",
+			"boxState": "angry",
+			"expression": "talk",
+			"text": "WHAT"
+		},
+		{
+			"speed": 0.05,
+			"portrait": "dave3d",
+			"boxState": "angry",
+			"expression": "talk",
+			"text": "WHAT IS HAPPENING"
+		},
+		{
+			"speed": 0.05,
+			"portrait": "dave3d",
+			"boxState": "angry",
+			"expression": "talk",
+			"text": "THE WORLD IS BECOMING THREE DIMENSIONAL"
+		},
+		{
+			"speed": 0.05,
+			"portrait": "dave3d",
+			"boxState": "angry",
+			"expression": "talk",
+			"text": "NOT THE LAB AGAIN"
+		},
+		{
+			"speed": 0.05,
+			"portrait": "dave3d",
+			"boxState": "angry",
+			"expression": "talk",
+			"text": "PLEASE HELP ME BECOME 2D"
+		},
+		{
+			"speed": 0.05,
+			"portrait": "dave3d",
+			"boxState": "angry",
+			"expression": "talk",
+			"text": "TAKE THE MICROPHONE AND RESTORE ME BACK TO THIS REALITY'S FORM"
+		},
+		{
+			"speed": 0.05,
+			"portrait": "bf",
+			"boxState": "normal",
+			"expression": "talk",
+			"text": "B-beep?"
+		}
+	]
+}

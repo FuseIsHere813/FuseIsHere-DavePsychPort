@@ -148,6 +148,10 @@ class CharacterSelectState extends MusicBeatState
 
                 
             }
+            if (controls.BACK)
+                {
+                    MusicBeatState.switchState(new StoryMenuState());
+                }
         // if (controls.UI_LEFT_P)
         //     {
         //         logoBl.x = logoBl.x - 10;

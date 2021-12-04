@@ -1,0 +1,84 @@
+{
+	"storyName": "bambi has had it",
+	"hideFreeplay": false,
+	"weekBackground": "finale",
+	"freeplayColor": [
+		146,
+		113,
+		253
+	],
+	"weekBefore": "tutorial",
+	"startUnlocked": true,
+	"hideStoryMode": true,
+	"weekCharacters": [
+		"",
+		"",
+		""
+	],
+	"songs": [
+		[
+			"Mealie",
+			"bambi",
+			[
+				0,
+				133,
+				0
+			]
+		],
+		[
+			"Screwed",
+			"bambimad",
+			[
+				0,
+				133,
+				0
+			]
+		],
+		[
+			"Furiosity",
+			"angey-dave",
+			[
+				146,
+				113,
+				253
+			]
+		],
+		[
+			"Old Insanity",
+			"oldest-dave",
+			[
+				0,
+				133,
+				0
+			]
+		],
+		[
+			"Old Corn Theft",
+			"bambi",
+			[
+				0,
+				133,
+				0
+			]
+		],
+		[
+			"Old Maze",
+			"bambi",
+			[
+				146,
+				113,
+				253
+			]
+		],
+		[
+			"Old Splitathon",
+			"splitathon",
+			[
+				146,
+				113,
+				253
+			]
+		]
+	],
+	"weekName": "screwer man"
+}

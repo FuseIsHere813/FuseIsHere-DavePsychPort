@@ -24,11 +24,18 @@ class CreditsState extends MusicBeatState
 	private var iconArray:Array<AttachedSprite> = [];
 
 	private static var creditsStuff:Array<Dynamic> = [ //Name - Icon name - Description - Link - BG Color
-		['Vs. Dave Mod Port Team'],
-		['FuseIsHere',		    'fuseishere',		'Main Developer of the Vs. Dave and Bambi\nPsych Engine Port',					'https://twitter.com/fuse_here',	0xFF008080],
+		['Vs. Dave and Bambi Mod Port Team'],
+		['FuseIsHere',		    'fuseishere',		'Main Developer of the Vs. Dave and Bambi\nPsych Engine Port\n"Hmm, how about I create a Vs Dave and Bambi Mod Port!"',					'https://twitter.com/fuse_here',	0xFF008080],
 		['ElectricSakura16',	'electricsakura16',	'Artist of Sakura and got approved permission from her to use Sakura for my spritesheet.',					'https://www.deviantart.com/ojamajosakura15',	0xFFFFC0CB],
-		['Slxickey',	        'unknown',	        'Gave me ideas, such as:\nBotplay on Cheating = No.',					'https://www.youtube.com/channel/UCj1LG7-FdQWXZhek2o2_qKA',	0xFFA52A2A],
+		['Slxickey',	        'unknown',	        'Gave me ideas, such as:\nBotplay on Cheating = No.\n"I dare you to beat Cheating :))"',					'https://www.youtube.com/channel/UCj1LG7-FdQWXZhek2o2_qKA',	0xFFA52A2A],
+		['Join the Offical Discord of the Port!',	'discord',			'If you want know more about the port and get to know the latest updates, Enter here...',									'https://discord.gg/p2tQbUj354',		0xFF5165F6],
 		[''],
+		['Vs Dave and Bambi Team'],
+		['MoldyGH',		'unknown',		'Main Developer of VS Dave and Bambi',					'https://www.youtube.com/channel/UCHIvkOUDfbMCv-BEIPGgpmA',	0xFFFF2626],
+		['MarcelloBasics03',	'unknown',		'The origin of The Voice of Mr. Bambi',					'https://www.youtube.com/channel/UCc1lz4_AWIGkj6CnMKydUOg',	0xFF00FF04],
+		['That Pizza Tower Fan',	'unknown',		'Composer of Screwed',					'https://www.youtube.com/channel/UC7-0Iemmc842O6HYtVYl7MQ',	0xFF006EFF],
+        ['Alexander Cooper 19',	    'unknown',		'Composer of Mealie',					'https://www.youtube.com/channel/UCNz20AHJq41rkBUsq8RmUfQ',	0xFF0000FF],
+        [''],
 		['Psych Engine Team'],
 		['Shadow Mario',		'shadowmario',		'Main Programmer of Psych Engine',					'https://twitter.com/Shadow_Mario_',	0xFFFFDD33],
 		['RiverOaken',			'riveroaken',		'Main Artist/Animator of Psych Engine',				'https://twitter.com/river_oaken',		0xFFC30085],

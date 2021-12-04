@@ -9715,14 +9715,14 @@
 				"mustHitSection": true
 			}
 		],
-		"player2": "bambi-3d",
+		"player2": "bambi-unfair",
 		"player3": "gf",
 		"song": "Unfairness",
 		"stage": "unfair-life",
 		"needsVoices": true,
 		"sections": 1,
 		"validScore": true,
-		"speed": 4.05,
+		"speed": 3.65,
 		"bpm": 300
 	}
 }

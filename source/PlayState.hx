@@ -62,16 +62,16 @@ class PlayState extends MusicBeatState
 	public static var STRUM_X_MIDDLESCROLL = -278;
 
 	public static var ratingStuff:Array<Dynamic> = [
-		['You Suck!', 0.2], //From 0% to 19%
-		['Shit', 0.4], //From 20% to 39%
-		['Bad', 0.5], //From 40% to 49%
-		['Bruh', 0.6], //From 50% to 59%
-		['Meh', 0.69], //From 60% to 68%
-		['Nice', 0.7], //69%
-		['Good', 0.8], //From 70% to 79%
-		['Great', 0.9], //From 80% to 89%
-		['Sick!', 1], //From 90% to 99%
-		['Perfect!!', 1] //The value on this one isn't used actually, since Perfect is always "1"
+		['Skill Issue', 0.2], //From 0% to 19%
+		['Bambi blocked you.', 0.4], //From 20% to 39%
+		['Dave is not happy.', 0.5], //From 40% to 49%
+		['Dude...', 0.6], //From 50% to 59%
+		['Eeehhh...', 0.69], //From 60% to 68%
+		['Hahaha funni number', 0.7], //69%
+		['Average Spammer', 0.8], //From 70% to 79%
+		['You have the Power!', 0.9], //From 80% to 89%
+		['Spam Moment LOL!', 1], //From 90% to 99%
+		['Master!', 1] //The value on this one isn't used actually, since Perfect is always "1"
 	];
 	
 	#if (haxe >= "4.0.0")
@@ -117,6 +117,10 @@ class PlayState extends MusicBeatState
 	public static var storyPlaylist:Array<String> = [];
 	public static var storyDifficulty:Int = 1;
 
+	public var darkLevels:Array<String> = ['bamber-night', 'dave-night'];
+
+	public var sunsetLevels:Array<String> = ['bamber-sunset'];
+
 	public var vocals:FlxSound;
 
 	public var dad:Character;
@@ -135,6 +139,8 @@ class PlayState extends MusicBeatState
 	private static var prevCamFollow:FlxPoint;
 	private static var prevCamFollowPos:FlxObject;
 	private static var resetSpriteCache:Bool = false;
+
+	public var sunsetColor:FlxColor = FlxColor.fromRGB(255, 143, 178);
 
 	public var strumLineNotes:FlxTypedGroup<StrumNote>;
 	public var opponentStrums:FlxTypedGroup<StrumNote>;
@@ -303,6 +309,13 @@ class PlayState extends MusicBeatState
 		detailsPausedText = "Paused - " + detailsText;
 		#end
 
+		if(darkLevels.contains(curStage) && SONG.song.toLowerCase() != "splitathon")
+			{
+				dad.color = nightColor;
+				gf.color = nightColor;
+				boyfriend.color = nightColor;
+			}
+
 		GameOverSubstate.resetVariables();
 		var songName:String = Paths.formatToSongPath(SONG.song);
 		curStage = PlayState.SONG.stage;
@@ -324,6 +337,18 @@ class PlayState extends MusicBeatState
 					curStage = 'school';
 				case 'thorns':
 					curStage = 'schoolEvil';
+				case 'house' | 'insanity' | 'old-insanity' | 'shitpost':
+					curStage = 'dave-house';
+				case 'splitathon' | 'mealie':
+					curStage = 'bamber-night';
+				case 'bonus-song' | 'supernovae' | 'glitch':
+					curStage = 'dave-night';
+				case 'blocked' | 'corn-theft' | 'maze' | 'screwed' | 'old-corn-theft' | 'old-corn-maze' | 'secret' | 'beta-maze':
+					curStage = 'bamber-corn-farm';
+				case 'furiosity' | 'polygonized':
+					curStage = 'dave4';
+				case 'cheating':
+					curStage = 'bambi-had-enough-of-your-shit';
 				default:
 					curStage = 'stage';
 			}
@@ -664,6 +689,41 @@ class PlayState extends MusicBeatState
 				
 				add(stageFront);
 
+				case 'dave-house':
+					defaultCamZoom = 0.9;
+					var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('dave/sky'));
+					bg.antialiasing = true;
+					bg.scrollFactor.set(0.75, 0.75);
+					bg.active = false;
+	
+					add(bg);
+		
+					var stageHills:FlxSprite = new FlxSprite(-225, -125).loadGraphic(Paths.image('dave/hills'));
+					stageHills.setGraphicSize(Std.int(stageHills.width * 1.25));
+					stageHills.updateHitbox();
+					stageHills.antialiasing = true;
+					stageHills.scrollFactor.set(0.8, 0.8);
+					stageHills.active = false;
+					
+					add(stageHills);
+		
+					var gate:FlxSprite = new FlxSprite(-200, -125).loadGraphic(Paths.image('dave/gate'));
+					gate.setGraphicSize(Std.int(gate.width * 1.2));
+					gate.updateHitbox();
+					gate.antialiasing = true;
+					gate.scrollFactor.set(0.9, 0.9);
+					gate.active = false;
+	
+					add(gate);
+		
+					var stageFront:FlxSprite = new FlxSprite(-225, -125).loadGraphic(Paths.image('dave/grass'));
+					stageFront.setGraphicSize(Std.int(stageFront.width * 1.2));
+					stageFront.updateHitbox();
+					stageFront.antialiasing = true;
+					stageFront.active = false;
+					
+					add(stageFront);
+
 				case 'bamber-night':
 					var bg:FlxSprite = new FlxSprite(-700, 0).loadGraphic(Paths.image('dave/skynight'));
 					bg.antialiasing = true;
@@ -720,6 +780,50 @@ class PlayState extends MusicBeatState
 						add(fence);
 						add(sign);
 
+						case 'bamber-corn-farm':
+							var bg:FlxSprite = new FlxSprite(-700, 0).loadGraphic(Paths.image('dave/sky'));
+							bg.antialiasing = true;
+							bg.scrollFactor.set(0.9, 0.9);
+							bg.active = false;
+				
+							var hills:FlxSprite = new FlxSprite(-250, 200).loadGraphic(Paths.image('bambi/orangey hills'));
+							hills.antialiasing = true;
+							hills.scrollFactor.set(0.9, 0.7);
+							hills.active = false;
+				
+							var farm:FlxSprite = new FlxSprite(150, 250).loadGraphic(Paths.image('bambi/funfarmhouse'));
+							farm.antialiasing = true;
+							farm.scrollFactor.set(1.1, 0.9);
+							farm.active = false;
+							
+							var foreground:FlxSprite = new FlxSprite(-400, 600).loadGraphic(Paths.image('bambi/grass lands'));
+							foreground.antialiasing = true;
+							foreground.active = false;
+							
+							var cornSet:FlxSprite = new FlxSprite(-350, 325).loadGraphic(Paths.image('bambi/Cornys'));
+							cornSet.antialiasing = true;
+							cornSet.active = false;
+							
+							var cornSet2:FlxSprite = new FlxSprite(1050, 325).loadGraphic(Paths.image('bambi/Cornys'));
+							cornSet2.antialiasing = true;
+							cornSet2.active = false;
+							
+							var fence:FlxSprite = new FlxSprite(-350, 450).loadGraphic(Paths.image('bambi/crazy fences'));
+							fence.antialiasing = true;
+							fence.active = false;
+				
+							var sign:FlxSprite = new FlxSprite(0, 500).loadGraphic(Paths.image('bambi/Sign'));
+							sign.antialiasing = true;
+							sign.active = false;
+
+							add(bg);
+							add(hills);
+							add(farm);
+							add(foreground);
+							add(cornSet);
+							add(cornSet2);
+							add(fence);
+							add(sign);
 		}
 
 		if(isPixelStage) {
@@ -865,7 +969,7 @@ class PlayState extends MusicBeatState
 		strumLine.scrollFactor.set();
 
 		timeTxt = new FlxText(STRUM_X + (FlxG.width / 2) - 248, 20, 400, "", 32);
-		timeTxt.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		timeTxt.setFormat(Paths.font("comic.ttf"), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		timeTxt.scrollFactor.set();
 		timeTxt.alpha = 0;
 		timeTxt.borderSize = 2;
@@ -986,14 +1090,14 @@ class PlayState extends MusicBeatState
 		reloadHealthBarColors();
 
 		scoreTxt = new FlxText(0, healthBarBG.y + 36, FlxG.width, "", 20);
-		scoreTxt.setFormat(Paths.font("vcr.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		scoreTxt.setFormat(Paths.font("comic.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		scoreTxt.scrollFactor.set();
 		scoreTxt.borderSize = 1.25;
 		scoreTxt.visible = !ClientPrefs.hideHud;
 		add(scoreTxt);
 
 		botplayTxt = new FlxText(400, timeBarBG.y + 55, FlxG.width - 800, "BOTPLAY", 32);
-		botplayTxt.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		botplayTxt.setFormat(Paths.font("comic.ttf"), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		botplayTxt.scrollFactor.set();
 		botplayTxt.borderSize = 1.25;
 		botplayTxt.visible = cpuControlled;
@@ -1924,15 +2028,13 @@ class PlayState extends MusicBeatState
 						return;
 
 					case 'cheating':
-						PlayState.SONG = Song.loadFromJson("cheating-2", "cheating-2"); // code from playstate :trol:
+						PlayState.SONG = Song.loadFromJson("unfairness", "unfairness"); // code from playstate :trol:
 						FlxG.save.data.cheatingFound = true;
 						FlxG.switchState(new PlayState());
 						return;
 
 					case 'cheating-2':
-						PlayState.SONG = Song.loadFromJson("unfairness", "unfairness"); // code from playstate :trol:
-						FlxG.save.data.cheatingFound = true;
-						FlxG.switchState(new PlayState());
+						FlxG.switchState(new SusState());
 						return;
 
 					case 'unfairness':
@@ -1950,6 +2052,18 @@ class PlayState extends MusicBeatState
 							return;
 					}
 				}
+
+			if (FlxG.keys.justPressed.TWO)
+			{
+				switch (curSong.toLowerCase())
+				{
+					case 'cheating':
+						PlayState.SONG = Song.loadFromJson("cheating-2", "cheating-2"); // code from playstate :trol:
+						FlxG.save.data.cheatingFound = true;
+						FlxG.switchState(new PlayState());
+						return;
+				}
+			}
 
 		switch (curStage)
 		{

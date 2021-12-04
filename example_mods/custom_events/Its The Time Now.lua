@@ -13,6 +13,5 @@ function onEvent(name, value1, value2)
 	if name == "Its The Time Now" then
 		setProperty('itstime.alpha', 1);
 		doTweenAlpha('tweenCutOffAlpha', 'itstime', 0, 0.5, 'linear');
-                playSound('cutMeOff');
 	end
 end

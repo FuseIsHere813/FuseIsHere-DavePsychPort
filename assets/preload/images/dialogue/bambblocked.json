@@ -1,11 +1,11 @@
 {
 	"position": [
-		170,
-		100
+		160,
+		130
 	],
 	"dialogue_pos": "left",
-	"scale": 1.25,
-	"image": "DaveInsanity_Dialogue_New",
+	"scale": 1.4,
+	"image": "BambBlocked_Dialogue",
 	"animations": [
 		{
 			"idle_offsets": [

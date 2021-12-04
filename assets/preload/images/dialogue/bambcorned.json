@@ -1,0 +1,24 @@
+{
+	"dialogue_pos": "left",
+	"position": [
+		160,
+		130
+	],
+	"scale": 1.4,
+	"animations": [
+		{
+			"anim": "talk",
+			"loop_offsets": [
+				0,
+				0
+			],
+			"idle_offsets": [
+				-1,
+				-11
+			],
+			"loop_name": "Dave",
+			"idle_name": "Dave"
+		}
+	],
+	"image": "BambCorned_Dialogue"
+}

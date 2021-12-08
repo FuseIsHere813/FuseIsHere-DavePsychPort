@@ -3,28 +3,6 @@
 		{
 			"loop": false,
 			"offsets": [
-				0,
-				0
-			],
-			"anim": "idle",
-			"fps": 24,
-			"name": "idle",
-			"indices": []
-		},
-		{
-			"loop": false,
-			"offsets": [
-				-34,
-				-6
-			],
-			"anim": "singRIGHT",
-			"fps": 24,
-			"name": "right",
-			"indices": []
-		},
-		{
-			"loop": false,
-			"offsets": [
 				-6,
 				-6
 			],
@@ -47,22 +25,44 @@
 		{
 			"loop": false,
 			"offsets": [
-				-24,
-				15
+				-33,
+				10
+			],
+			"anim": "singRIGHT",
+			"fps": 24,
+			"name": "right",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				0,
+				43
 			],
 			"anim": "singUP",
 			"fps": 24,
 			"name": "up",
 			"indices": []
+		},
+		{
+			"offsets": [
+				0,
+				0
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "idle",
+			"loop": false,
+			"name": "idle"
 		}
 	],
 	"no_antialiasing": false,
-	"image": "bambi/heissofuckingpissedatyou",
+	"image": "old/bamber_farm_beta_man",
 	"position": [
 		0,
-		390
+		360
 	],
-	"healthicon": "bambimad",
+	"healthicon": "bambi",
 	"flip_x": false,
 	"healthbar_colors": [
 		0,
@@ -74,5 +74,5 @@
 		0
 	],
 	"sing_duration": 6.1,
-	"scale": 1
+	"scale": 1.05
 }

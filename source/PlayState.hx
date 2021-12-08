@@ -824,6 +824,24 @@ class PlayState extends MusicBeatState
 							add(cornSet2);
 							add(fence);
 							add(sign);
+
+							case 'dave4':
+								defaultCamZoom = 0.9;
+								var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('3d'));
+								bg.active = true;
+								add(bg);
+
+							case 'bambi-had-enough-of-your-shit':
+								defaultCamZoom = 0.9;
+								var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('be-a-cheater'));
+								bg.active = true;
+								add(bg);
+
+							case 'unfair-life':
+								defaultCamZoom = 0.9;
+								var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('fuckyou'));
+								bg.active = true;
+								add(bg);
 		}
 
 		if(isPixelStage) {
@@ -1078,6 +1096,48 @@ class PlayState extends MusicBeatState
 		add(healthBar);
 		healthBarBG.sprTracker = healthBar;
 
+		var credits:String;
+		switch (SONG.song.toLowerCase())
+		{
+			case 'supernovae':
+				credits = 'Original Song made by ArchWk!';
+			case 'glitch':
+				credits = 'Original Song made by DeadShadow and PixelGH!';
+			case 'mealie':
+				credits = 'Original Song made by Alexander Cooper 19!';
+			case 'screwed':
+				credits = 'Original Song made by That Pizza Tower Fan!';
+			case 'unfairness':
+				credits = "Ghost tapping is forced off! Screw you!";
+			case 'cheating-2':
+				credits = "Did you just press two on Cheating? LOL!!";
+			case 'cheating-3':
+				credits = "lmao did you just add cheating 3??";
+			case 'cheating':
+				credits = 'Screw you!';
+			case 'shitpost':
+				credits = 'bamballs';
+			case 'furiosity':
+				credits = '...';
+			default:
+				credits = '';
+		}
+		
+		var creditsText:Bool = credits != '';
+		var textYPos:Float = healthBarBG.y + 50;
+		if (creditsText)
+		{
+			textYPos = healthBarBG.y + 30;
+		}
+		if (creditsText)
+		{
+			var creditsWatermark = new FlxText(4, healthBarBG.y + 50, 0, credits, 16);
+			creditsWatermark.setFormat(Paths.font("comic.ttf"), 16, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+			creditsWatermark.scrollFactor.set();
+			creditsWatermark.borderSize = 1.25;
+			add(creditsWatermark);
+			creditsWatermark.cameras = [camHUD];
+		}
 		iconP1 = new HealthIcon(boyfriend.healthIcon, true);
 		iconP1.y = healthBar.y - (iconP1.height / 2);
 		iconP1.visible = !ClientPrefs.hideHud;

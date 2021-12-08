@@ -8,10 +8,10 @@
 	<SubTexture name="MARCELLO idle dance0001" x="1005" y="0" width="335" height="410"/>
 	<SubTexture name="MARCELLO idle dance0002" x="1340" y="0" width="335" height="410"/>
 	<SubTexture name="MARCELLO idle dance0003" x="1675" y="0" width="335" height="410"/>
-	<SubTexture name="MARCELLO NOTE LEFT0000" x="0" y="410" width="335" height="410"/>
-	<SubTexture name="MARCELLO NOTE LEFT0001" x="335" y="410" width="335" height="410"/>
-	<SubTexture name="MARCELLO NOTE RIGHT0001" x="670" y="410" width="335" height="410"/>
-	<SubTexture name="MARCELLO NOTE RIGHT0002" x="1005" y="410" width="335" height="410"/>
+	<SubTexture name="MARCELLO NOTE RIGHT0000" x="0" y="410" width="335" height="410"/>
+	<SubTexture name="MARCELLO NOTE RIGHT0001" x="335" y="410" width="335" height="410"/>
+	<SubTexture name="MARCELLO NOTE LEFT0001" x="670" y="410" width="335" height="410"/>
+	<SubTexture name="MARCELLO NOTE LEFT0002" x="1005" y="410" width="335" height="410"/>
 	<SubTexture name="MARCELLO NOTE UP0000" x="1340" y="410" width="335" height="410"/>
 	<SubTexture name="MARCELLO NOTE UP0001" x="1675" y="410" width="335" height="410"/>
 	<SubTexture name="MARCELLO MISS DOWN0000" x="0" y="1024" width="335" height="410"/>

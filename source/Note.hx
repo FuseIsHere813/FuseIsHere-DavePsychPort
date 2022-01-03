@@ -222,7 +222,7 @@ class Note extends FlxSprite
 		var skin:String = texture;
 		if(texture.length < 1 && !inEdit) {
 			skin = noteSkeen;
-		} else skin = 'NOTE_assets';
+		} else if (texture.length < 1) skin = 'NOTE_assets';
 
 		var animName:String = null;
 		if(animation.curAnim != null) {

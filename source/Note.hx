@@ -61,6 +61,8 @@ class Note extends FlxSprite
 
 	public var hitHealth:Float = 0.023;
 	public var missHealth:Float = 0.0475;
+	public var noteSkeen:String;
+	public var inEdit:Bool=false;
 
 	public var texture(default, set):String = null;
 
@@ -107,10 +109,11 @@ class Note extends FlxSprite
 		return value;
 	}
 
-	public function new(strumTime:Float, noteData:Int, ?prevNote:Note, ?sustainNote:Bool = false, ?inEditor:Bool = false)
+	public function new(strumTime:Float, noteData:Int, ?prevNote:Note, ?sustainNote:Bool = false, ?inEditor:Bool = false, ?noteSkin:String="NOTE_assets")
 	{
 		super();
-
+		noteSkeen=noteSkin;
+		inEdit=inEditor;
 		if (prevNote == null)
 			prevNote = this;
 
@@ -218,10 +221,7 @@ class Note extends FlxSprite
 		
 		var skin:String = texture;
 		if(texture.length < 1) {
-			skin = PlayState.SONG.arrowSkin;
-			if(skin == null || skin.length < 1) {
-				skin = 'NOTE_assets';
-			}
+			skin = noteSkeen;
 		}
 
 		var animName:String = null;
@@ -233,7 +233,7 @@ class Note extends FlxSprite
 		arraySkin[arraySkin.length-1] = prefix + arraySkin[arraySkin.length-1] + suffix;
 
 		var lastScaleY:Float = scale.y;
-		var blahblah:String = arraySkin.join('/');
+		var blahblah:String = noteSkeen;
 		if(PlayState.isPixelStage) {
 			if(isSustainNote) {
 				loadGraphic(Paths.image('pixelUI/' + blahblah + 'ENDS'));

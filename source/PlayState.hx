@@ -255,6 +255,7 @@ class PlayState extends MusicBeatState
 
 	// le spliter thoner :trol:
 	var nightColor:FlxColor = 0xFF878787;
+	public var oldShitMode:Bool=false;
 
 	override public function create()
 	{
@@ -380,6 +381,12 @@ class PlayState extends MusicBeatState
 		dadGroup = new FlxSpriteGroup(DAD_X, DAD_Y);
 		gfGroup = new FlxSpriteGroup(GF_X, GF_Y);
 
+		switch(SONG.song.toLowerCase()) {
+			case 'old-insanity' | 'old-corn-theft' | 'old-maze' | 'old splitathon' | 'beta-maze':
+				oldShitMode=true;
+			default:
+				oldShitMode=false;
+		}
 		switch (curStage)
 		{
 			case 'stage': //Week 1
@@ -1003,7 +1010,7 @@ class PlayState extends MusicBeatState
 		timeBarBG.color = FlxColor.BLACK;
 		timeBarBG.xAdd = -4;
 		timeBarBG.yAdd = -4;
-		add(timeBarBG);
+		if (!oldShitMode) add(timeBarBG);
 
 		timeBar = new FlxBar(timeBarBG.x + 4, timeBarBG.y + 4, LEFT_TO_RIGHT, Std.int(timeBarBG.width - 8), Std.int(timeBarBG.height - 8), this,
 			'songPercent', 0, 1);
@@ -1012,8 +1019,8 @@ class PlayState extends MusicBeatState
 		timeBar.numDivisions = 800; //How much lag this causes?? Should i tone it down to idk, 400 or 200?
 		timeBar.alpha = 0;
 		timeBar.visible = !ClientPrefs.hideTime;
-		add(timeBar);
-		add(timeTxt);
+		if (!oldShitMode) add(timeBar);
+		if (!oldShitMode) add(timeTxt);
 		timeBarBG.sprTracker = timeBar;
 
 		strumLineNotes = new FlxTypedGroup<StrumNote>();
@@ -1078,24 +1085,61 @@ class PlayState extends MusicBeatState
 		FlxG.fixedTimestep = false;
 		moveCameraSection(0);
 
-		healthBarBG = new AttachedSprite('healthBar');
-		healthBarBG.y = FlxG.height * 0.89;
-		healthBarBG.screenCenter(X);
-		healthBarBG.scrollFactor.set();
-		healthBarBG.visible = !ClientPrefs.hideHud;
-		healthBarBG.xAdd = -4;
-		healthBarBG.yAdd = -4;
-		add(healthBarBG);
-		if(ClientPrefs.downScroll) healthBarBG.y = 0.11 * FlxG.height;
+		if (!oldShitMode) {
+			healthBarBG = new AttachedSprite('healthBar');
+			healthBarBG.y = FlxG.height * 0.89;
+			healthBarBG.screenCenter(X);
+			healthBarBG.scrollFactor.set();
+			healthBarBG.visible = !ClientPrefs.hideHud;
+			healthBarBG.xAdd = -4;
+			healthBarBG.yAdd = -4;
+			add(healthBarBG);
+			if(ClientPrefs.downScroll) healthBarBG.y = 0.11 * FlxG.height;
 
-		healthBar = new FlxBar(healthBarBG.x + 4, healthBarBG.y + 4, RIGHT_TO_LEFT, Std.int(healthBarBG.width - 8), Std.int(healthBarBG.height - 8), this,
-			'health', 0, 2);
-		healthBar.scrollFactor.set();
-		// healthBar
-		healthBar.visible = !ClientPrefs.hideHud;
-		add(healthBar);
-		healthBarBG.sprTracker = healthBar;
+			healthBar = new FlxBar(healthBarBG.x + 4, healthBarBG.y + 4, RIGHT_TO_LEFT, Std.int(healthBarBG.width - 8), Std.int(healthBarBG.height - 8), this,
+				'health', 0, 2);
+			healthBar.scrollFactor.set();
+			// healthBar
+			healthBar.visible = !ClientPrefs.hideHud;
+			add(healthBar);
+			healthBarBG.sprTracker = healthBar;
 
+
+			scoreTxt = new FlxText(0, healthBarBG.y + 36, FlxG.width, "", 20);
+			scoreTxt.setFormat(Paths.font("comic.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+			scoreTxt.scrollFactor.set();
+			scoreTxt.borderSize = 1.25;
+			scoreTxt.visible = !ClientPrefs.hideHud;
+			add(scoreTxt);
+		} else if (oldShitMode) {
+			healthBarBG = new AttachedSprite('healthBar');
+			healthBarBG.y = FlxG.height * 0.9;
+			if (ClientPrefs.downScroll)
+				healthBarBG.y = 50;
+			healthBarBG.screenCenter(X);
+			healthBarBG.scrollFactor.set();
+			add(healthBarBG);
+
+			healthBar = new FlxBar(healthBarBG.x + 4, healthBarBG.y + 4, RIGHT_TO_LEFT, Std.int(healthBarBG.width - 8), Std.int(healthBarBG.height - 8), this,
+				'health', 0, 2);
+			healthBar.scrollFactor.set();
+			healthBar.createFilledBar(0xFFFF0000, 0xFF66FF33);
+			// healthBar
+			add(healthBar);
+
+			// Add Kade Engine watermark
+			var kadeEngineWatermark = new FlxText(4,FlxG.height - 4,0,SONG.song + " " + (storyDifficulty == 2 ? "Hard" : storyDifficulty == 1 ? "Normal" : "Easy") + " - PE 0.4.2", 16);
+			kadeEngineWatermark.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
+			kadeEngineWatermark.scrollFactor.set();
+			add(kadeEngineWatermark);
+
+			scoreTxt = new FlxText(healthBarBG.x + healthBarBG.width / 2 - 150, healthBarBG.y + 50, 0, "", 20);
+			if (!FlxG.save.data.accuracyDisplay)
+				scoreTxt.x = healthBarBG.x + healthBarBG.width / 2;
+			scoreTxt.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
+			scoreTxt.scrollFactor.set();
+			add(scoreTxt);
+		}
 		var credits:String;
 		switch (SONG.song.toLowerCase())
 		{
@@ -1138,24 +1182,6 @@ class PlayState extends MusicBeatState
 			add(creditsWatermark);
 			creditsWatermark.cameras = [camHUD];
 		}
-		iconP1 = new HealthIcon(boyfriend.healthIcon, true);
-		iconP1.y = healthBar.y - (iconP1.height / 2);
-		iconP1.visible = !ClientPrefs.hideHud;
-		add(iconP1);
-
-		iconP2 = new HealthIcon(dad.healthIcon, false);
-		iconP2.y = healthBar.y - (iconP2.height / 2);
-		iconP2.visible = !ClientPrefs.hideHud;
-		add(iconP2);
-		reloadHealthBarColors();
-
-		scoreTxt = new FlxText(0, healthBarBG.y + 36, FlxG.width, "", 20);
-		scoreTxt.setFormat(Paths.font("comic.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		scoreTxt.scrollFactor.set();
-		scoreTxt.borderSize = 1.25;
-		scoreTxt.visible = !ClientPrefs.hideHud;
-		add(scoreTxt);
-
 		botplayTxt = new FlxText(400, timeBarBG.y + 55, FlxG.width - 800, "BOTPLAY", 32);
 		botplayTxt.setFormat(Paths.font("comic.ttf"), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		botplayTxt.scrollFactor.set();
@@ -1165,6 +1191,17 @@ class PlayState extends MusicBeatState
 		if(ClientPrefs.downScroll) {
 			botplayTxt.y = timeBarBG.y - 78;
 		}
+
+		iconP1 = new HealthIcon(boyfriend.healthIcon, true);
+		iconP1.y = healthBar.y - (iconP1.height / 2);
+		iconP1.visible = !ClientPrefs.hideHud;
+		add(iconP1);
+
+		iconP2 = new HealthIcon(dad.healthIcon, false);
+		iconP2.y = healthBar.y - (iconP2.height / 2);
+		iconP2.visible = !ClientPrefs.hideHud;
+		add(iconP2);
+		if (!oldShitMode) reloadHealthBarColors();
 
 		strumLineNotes.cameras = [camHUD];
 		grpNoteSplashes.cameras = [camHUD];
@@ -1794,7 +1831,8 @@ class PlayState extends MusicBeatState
 					else
 						oldNote = null;
 
-					var swagNote:Note = new Note(daStrumTime, daNoteData, oldNote);
+					var swagNote:Note;
+					if (gottaHitNote) swagNote = new Note(daStrumTime, daNoteData, oldNote, boyfriend.noteSkin) else swagNote= new Note(daStrumTime, daNoteData, oldNote, dad.noteSkin);
 					swagNote.mustPress = gottaHitNote;
 					swagNote.sustainLength = songNotes[2];
 					swagNote.noteType = songNotes[3];
@@ -1812,7 +1850,8 @@ class PlayState extends MusicBeatState
 						{
 							oldNote = unspawnNotes[Std.int(unspawnNotes.length - 1)];
 
-							var sustainNote:Note = new Note(daStrumTime + (Conductor.stepCrochet * susNote) + (Conductor.stepCrochet / FlxMath.roundDecimal(SONG.speed, 2)), daNoteData, oldNote, true);
+							var sustainNote:Note;
+							if (gottaHitNote) sustainNote= new Note(daStrumTime + (Conductor.stepCrochet * susNote) + (Conductor.stepCrochet / FlxMath.roundDecimal(SONG.speed, 2)), daNoteData, oldNote, true, boyfriend.noteSkin) else sustainNote= new Note(daStrumTime + (Conductor.stepCrochet * susNote) + (Conductor.stepCrochet / FlxMath.roundDecimal(SONG.speed, 2)), daNoteData, oldNote, true, dad.noteSkin);
 							sustainNote.mustPress = gottaHitNote;
 							sustainNote.noteType = swagNote.noteType;
 							sustainNote.scrollFactor.set();
@@ -1903,16 +1942,27 @@ class PlayState extends MusicBeatState
 
 	private function generateStaticArrows(player:Int):Void
 	{
+		
 		for (i in 0...4)
 		{
 			// FlxG.log.add(i);
-			var babyArrow:StrumNote = new StrumNote(ClientPrefs.middleScroll ? STRUM_X_MIDDLESCROLL : STRUM_X, strumLine.y, i, player);
+			var babyArrow:StrumNote;
+			switch(player) {
+				case 0:
+					babyArrow = new StrumNote(ClientPrefs.middleScroll ? STRUM_X_MIDDLESCROLL : STRUM_X, strumLine.y, i, player, dad.noteSkin);
+				case 1:
+					babyArrow = new StrumNote(ClientPrefs.middleScroll ? STRUM_X_MIDDLESCROLL : STRUM_X, strumLine.y, i, player, boyfriend.noteSkin);
+				default:
+					babyArrow = new StrumNote(ClientPrefs.middleScroll ? STRUM_X_MIDDLESCROLL : STRUM_X, strumLine.y, i, player);
+			}
+			if (oldShitMode && !ClientPrefs.middleScroll) babyArrow.x=0;
 			if (!isStoryMode)
 			{
 				babyArrow.y -= 10;
 				babyArrow.alpha = 0;
 				FlxTween.tween(babyArrow, {y: babyArrow.y + 10, alpha: 1}, 1, {ease: FlxEase.circOut, startDelay: 0.5 + (0.2 * i)});
 			}
+			
 
 			if (player == 1)
 			{
@@ -2310,10 +2360,10 @@ class PlayState extends MusicBeatState
 
 		// FlxG.watch.addQuick('VOL', vocals.amplitudeLeft);
 		// FlxG.watch.addQuick('VOLRight', vocals.amplitudeRight);
-
-		iconP1.setGraphicSize(Std.int(FlxMath.lerp(150, iconP1.width, CoolUtil.boundTo(1 - (elapsed * 30), 0, 1))));
-		iconP2.setGraphicSize(Std.int(FlxMath.lerp(150, iconP2.width, CoolUtil.boundTo(1 - (elapsed * 30), 0, 1))));
-
+		var mult:Float = FlxMath.lerp(1, iconP1.scale.x, CoolUtil.boundTo(1 - (elapsed * 9), 0, 1));
+		iconP1.scale.set(mult, mult);
+		var mult:Float = FlxMath.lerp(1, iconP2.scale.x, CoolUtil.boundTo(1 - (elapsed * 9), 0, 1));
+		iconP2.scale.set(mult, mult);
 		iconP1.updateHitbox();
 		iconP2.updateHitbox();
 
@@ -3368,16 +3418,18 @@ class PlayState extends MusicBeatState
 			songScore += score;
 			songHits++;
 			RecalculateRating();
-			if(scoreTxtTween != null) {
-				scoreTxtTween.cancel();
-			}
-			scoreTxt.scale.x = 1.1;
-			scoreTxt.scale.y = 1.1;
-			scoreTxtTween = FlxTween.tween(scoreTxt.scale, {x: 1, y: 1}, 0.2, {
-				onComplete: function(twn:FlxTween) {
-					scoreTxtTween = null;
+			if (!oldShitMode) {
+				if(scoreTxtTween != null) {
+					scoreTxtTween.cancel();
 				}
-			});
+				scoreTxt.scale.x = 1.1;
+				scoreTxt.scale.y = 1.1;
+				scoreTxtTween = FlxTween.tween(scoreTxt.scale, {x: 1, y: 1}, 0.2, {
+					onComplete: function(twn:FlxTween) {
+						scoreTxtTween = null;
+					}
+				});
+			}
 		}
 
 		/* if (combo > 60)
@@ -4085,8 +4137,8 @@ class PlayState extends MusicBeatState
 			camHUD.zoom += 0.03;
 		}
 
-		iconP1.setGraphicSize(Std.int(iconP1.width + 30));
-		iconP2.setGraphicSize(Std.int(iconP2.width + 30));
+		iconP1.setGraphicSize(Std.int(iconP1.width + 30), Std.int(iconP1.height-30));
+		iconP2.setGraphicSize(Std.int(iconP2.width + 30), Std.int(iconP2.height-39));
 
 		iconP1.updateHitbox();
 		iconP2.updateHitbox();

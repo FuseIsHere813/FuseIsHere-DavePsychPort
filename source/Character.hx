@@ -48,6 +48,7 @@ class Character extends FlxSprite
 
 	public var isPlayer:Bool = false;
 	public var curCharacter:String = DEFAULT_CHARACTER;
+	public var noteSkin:String = 'NOTE_assets';
 
 	public var colorTween:FlxTween;
 	public var holdTimer:Float = 0;
@@ -168,6 +169,12 @@ class Character extends FlxSprite
 					quickAnimAdd('idle', 'BF idle dance');
 				}
 				//trace('Loaded file to character ' + curCharacter);
+		}
+		switch (curCharacter) {
+			case 'bambi-3d' | 'dave-3d' | 'dave-3d-standing-bruh-what' | 'dave-insanity-3d':
+				noteSkin = 'NOTE_assets_3D';
+			default:
+				noteSkin = 'NOTE_assets';
 		}
 		originalFlipX = flipX;
 

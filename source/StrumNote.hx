@@ -14,16 +14,15 @@ class StrumNote extends FlxSprite
 
 	private var player:Int;
 
-	public function new(x:Float, y:Float, leData:Int, player:Int) {
+	public function new(x:Float, y:Float, leData:Int, player:Int, ?noteSkin:String = "NOTE_assets") {
 		colorSwap = new ColorSwap();
 		shader = colorSwap.shader;
 		noteData = leData;
 		this.player = player;
 		this.noteData = leData;
 		super(x, y);
-
-		var skin:String = 'NOTE_assets';
-		if(PlayState.SONG.arrowSkin != null && PlayState.SONG.arrowSkin.length > 1) skin = PlayState.SONG.arrowSkin;
+		var skin:String;
+		skin=noteSkin;
 
 		if(PlayState.isPixelStage)
 		{

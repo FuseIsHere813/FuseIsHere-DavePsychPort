@@ -41,6 +41,7 @@ import lime.utils.Assets;
 import openfl.display.BlendMode;
 import openfl.display.StageQuality;
 import openfl.filters.ShaderFilter;
+import flixel.system.FlxAssets.FlxShader;
 import openfl.utils.Assets as OpenFlAssets;
 import editors.ChartingState;
 import editors.CharacterEditorState;
@@ -164,6 +165,7 @@ class PlayState extends MusicBeatState
 	private var generatedMusic:Bool = false;
 	public var endingSong:Bool = false;
 	private var startingSong:Bool = false;
+	public var curbg:FlxSprite;
 	private var updateTime:Bool = false;
 	public static var practiceMode:Bool = false;
 	public static var usedPractice:Bool = false;
@@ -389,6 +391,34 @@ class PlayState extends MusicBeatState
 		}
 		switch (curStage)
 		{
+			case 'redsky':
+				defaultCamZoom = 0.9;
+				var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('dave/redsky'));
+				bg.active = true;
+	
+				// switch (SONG.song.toLowerCase())
+				// {
+				// 	case 'cheating':
+				// 		bg.loadGraphic(Paths.image('dave/cheater'));
+				// 		curStage = 'unfairness';
+				// 	case 'unfairness':
+				// 		bg.loadGraphic(Paths.image('dave/scarybg'));
+				// 		curStage = 'cheating';
+				// 	default:
+				// 		bg.loadGraphic(Paths.image('dave/redsky'));
+				// 		curStage = 'daveEvilHouse';
+				// }
+				curbg=bg;
+				curbg.active=true;
+				add(bg);
+				// below code assumes shaders are always enabled which is bad
+				// i wouldnt consider this an eyesore though
+				var testshader:Shaders.GlitchEffect = new Shaders.GlitchEffect();
+				testshader.waveAmplitude = 0.1;
+				testshader.waveFrequency = 5;
+				testshader.waveSpeed = 2;
+				bg.shader = testshader.shader;
+				
 			case 'stage': //Week 1
 				var bg:BGSprite = new BGSprite('stageback', -600, -200, 0.9, 0.9);
 				add(bg);
@@ -2124,6 +2154,14 @@ class PlayState extends MusicBeatState
 		{
 			iconP1.swapOldIcon();
 		}*/
+		if (curbg != null)
+			{
+				if (curbg.active) // only the furiosity background is active
+				{
+					var shad = cast(curbg.shader, Shaders.GlitchShader);
+					shad.uTime.value[0] += elapsed;
+				}
+			}
 
 		callOnLuas('onUpdate', [elapsed]);
 

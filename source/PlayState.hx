@@ -61,6 +61,7 @@ class PlayState extends MusicBeatState
 {
 	public static var STRUM_X = 42;
 	public static var STRUM_X_MIDDLESCROLL = -278;
+	public var elapsedtime:Float = 0;
 
 	public static var ratingStuff:Array<Dynamic> = [
 		['Skill Issue', 0.2], //From 0% to 19%
@@ -348,10 +349,10 @@ class PlayState extends MusicBeatState
 					curStage = 'dave-night';
 				case 'blocked' | 'corn-theft' | 'maze' | 'screwed' | 'old-corn-theft' | 'old-corn-maze' | 'secret' | 'beta-maze':
 					curStage = 'bamber-corn-farm';
-				case 'furiosity' | 'polygonized':
+				case 'furiosity':
 					curStage = 'dave4';
-				case 'cheating':
-					curStage = 'bambi-had-enough-of-your-shit';
+				case 'cheating' | 'polygonized' | 'unfairness':
+					curStage = 'redsky';
 				default:
 					curStage = 'stage';
 			}
@@ -386,6 +387,8 @@ class PlayState extends MusicBeatState
 		switch(SONG.song.toLowerCase()) {
 			case 'old-insanity' | 'old-corn-theft' | 'old-maze' | 'old splitathon' | 'beta-maze':
 				oldShitMode=true;
+			case 'unfairness':
+				ClientPrefs.downScroll=true;
 			default:
 				oldShitMode=false;
 		}
@@ -396,18 +399,15 @@ class PlayState extends MusicBeatState
 				var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('dave/redsky'));
 				bg.active = true;
 	
-				// switch (SONG.song.toLowerCase())
-				// {
-				// 	case 'cheating':
-				// 		bg.loadGraphic(Paths.image('dave/cheater'));
-				// 		curStage = 'unfairness';
-				// 	case 'unfairness':
-				// 		bg.loadGraphic(Paths.image('dave/scarybg'));
-				// 		curStage = 'cheating';
-				// 	default:
-				// 		bg.loadGraphic(Paths.image('dave/redsky'));
-				// 		curStage = 'daveEvilHouse';
-				// }
+				switch (SONG.song.toLowerCase())
+				{
+					case 'cheating':
+						bg.loadGraphic(Paths.image('dave/cheater'));
+					case 'unfairness':
+						bg.loadGraphic(Paths.image('dave/scarybg'));
+					default:
+						bg.loadGraphic(Paths.image('dave/redsky'));
+				}
 				curbg=bg;
 				curbg.active=true;
 				add(bg);
@@ -2154,6 +2154,7 @@ class PlayState extends MusicBeatState
 		{
 			iconP1.swapOldIcon();
 		}*/
+		elapsedtime+=elapsed;
 		if (curbg != null)
 			{
 				if (curbg.active) // only the furiosity background is active
@@ -2164,9 +2165,37 @@ class PlayState extends MusicBeatState
 			}
 
 		callOnLuas('onUpdate', [elapsed]);
-
+		if (SONG.song.toLowerCase() == 'cheating') // fuck you
+			{
+				playerStrums.forEach(function(spr:FlxSprite)
+				{
+					spr.x += Math.sin(elapsedtime) * ((spr.ID % 2) == 0 ? 1 : -1);
+					spr.x -= Math.sin(elapsedtime) * 1.5;
+				});
+				opponentStrums.forEach(function(spr:FlxSprite)
+				{
+					spr.x -= Math.sin(elapsedtime) * ((spr.ID % 2) == 0 ? 1 : -1);
+					spr.x += Math.sin(elapsedtime) * 1.5;
+				});
+			}
+	
+			if (SONG.song.toLowerCase() == 'unfairness') // fuck you
+				{
+					playerStrums.forEach(function(spr:FlxSprite)
+					{
+						spr.x = ((FlxG.width / 2) - (spr.width / 2)) + (Math.sin(elapsedtime + (spr.ID)) * 300);
+						spr.y = ((FlxG.height / 2) - (spr.height / 2)) + (Math.cos(elapsedtime + (spr.ID)) * 300);
+					});
+					opponentStrums.forEach(function(spr:FlxSprite)
+					{
+						spr.x = ((FlxG.width / 2) - (spr.width / 2)) + (Math.sin((elapsedtime + (spr.ID )) * 2) * 300);
+						spr.y = ((FlxG.height / 2) - (spr.height / 2)) + (Math.cos((elapsedtime + (spr.ID)) * 2) * 300);
+					});
+				}
+				
 		if (FlxG.keys.justPressed.SEVEN)
 			{
+				#if !debug
 				switch (curSong.toLowerCase())
 				{
 					case 'supernovae' | 'glitch':
@@ -2189,6 +2218,7 @@ class PlayState extends MusicBeatState
 						FlxG.switchState(new SusState());
 						return;
 				}
+				#end
 			}
 
 			if (FlxG.keys.justPressed.F1)

@@ -178,10 +178,12 @@ class PauseSubState extends MusicBeatSubstate
 					PlayState.cpuControlled = !PlayState.cpuControlled;
 					PlayState.usedPractice = true;
 					botplayText.visible = PlayState.cpuControlled;
+					#if !debug
 					if (PlayState.SONG.song.toLowerCase() == 'supernovae' || PlayState.SONG.song.toLowerCase()  == 'glitch' || PlayState.SONG.song.toLowerCase() == 'cheating' || PlayState.SONG.song.toLowerCase() == 'cheating-2' || PlayState.SONG.song.toLowerCase() == 'unfairness') {
 						FlxG.switchState(new SusState());
 						return;
 					}
+					#end
 				case "Exit to menu":
 					PlayState.deathCounter = 0;
 					PlayState.seenCutscene = false;

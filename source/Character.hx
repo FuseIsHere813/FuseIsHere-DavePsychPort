@@ -171,7 +171,7 @@ class Character extends FlxSprite
 				//trace('Loaded file to character ' + curCharacter);
 		}
 		switch (curCharacter) {
-			case 'bambi-3d' | 'dave-3d' | 'dave-3d-standing-bruh-what' | 'dave-insanity-3d':
+			case 'bambi-3d' | 'dave-3d' | 'dave-3d-standing-bruh-what' | 'dave-insanity-3d' | 'bambi-unfair':
 				noteSkin = 'NOTE_assets_3D';
 			default:
 				noteSkin = 'NOTE_assets';

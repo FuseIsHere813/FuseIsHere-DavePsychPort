@@ -127,6 +127,7 @@ class PlayState extends MusicBeatState
 
 	public var dad:Character;
 	public var gf:Character;
+	public var splitbambialt:Character;
 	public var boyfriend:Boyfriend;
 
 	public var notes:FlxTypedGroup<Note>;
@@ -2192,6 +2193,12 @@ class PlayState extends MusicBeatState
 						spr.y = ((FlxG.height / 2) - (spr.height / 2)) + (Math.cos((elapsedtime + (spr.ID)) * 2) * 300);
 					});
 				}
+
+				switch (SONG.song.toLowerCase())
+				{
+					default:
+						splitbambialt = new Character(0, 360, "bambi-splitathon");
+				}
 				
 		if (FlxG.keys.justPressed.SEVEN)
 			{
@@ -2215,7 +2222,7 @@ class PlayState extends MusicBeatState
 						return;
 
 					case 'unfairness':
-						FlxG.switchState(new SusState());
+						FlxG.switchState(new YouCheated());
 						return;
 				}
 				#end
@@ -2226,7 +2233,7 @@ class PlayState extends MusicBeatState
 					switch (curSong.toLowerCase())
 					{
 						case 'supernovae' | 'glitch' | 'cheating' | 'cheating-2' | 'unfairness':
-							FlxG.switchState(new SusState());
+							FlxG.switchState(new YouCheated());
 							return;
 					}
 				}
